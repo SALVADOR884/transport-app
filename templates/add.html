@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ajouter un voyage</h2>
+
+<form method="post">
+    <input name="agence" placeholder="Agence"><br><br>
+    <input name="depart" placeholder="Ville de départ"><br><br>
+    <input name="destination" placeholder="Destination"><br><br>
+    <input name="tarif" placeholder="Tarif"><br><br>
+    <input name="temps" placeholder="Temps (heures)"><br><br>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+{% endblock %}

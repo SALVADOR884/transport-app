@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transport Cameroun</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Transport Cameroun 🚍</h1>
+</header>
+
+<nav>
+    <a href="/">Accueil</a>
+    <a href="/add">Ajouter</a>
+    <a href="/stats">Statistiques</a>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des voyages</h2>
+
+{% for v in voyages %}
+<div class="card">
+    <strong>{{v.agence}}</strong><br>
+    {{v.depart}} → {{v.destination}}<br>
+    💰 {{v.tarif}} FCFA<br>
+    ⏱ {{v.temps}} h<br><br>
+
+    <a href="/delete/{{v.id}}">
+        <button class="delete">Supprimer</button>
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}

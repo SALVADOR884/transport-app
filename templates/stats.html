@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="title">📊 Tableau de bord</h2>
+
+<div class="stats-container">
+    <div class="stat-card">
+        <h3>Total voyages</h3>
+        <p>{{ total }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Prix moyen</h3>
+        <p>{{ avg_price }} FCFA</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Temps moyen</h3>
+        <p>{{ avg_time }} h</p>
+    </div>
+</div>
+
+<!-- 📊 Histogramme des prix -->
+<div class="chart-card">
+    <h3>📊 Distribution des prix (Histogramme)</h3>
+    <canvas id="histogram"></canvas>
+</div>
+
+<!-- 📈 Régression (temps vs prix) -->
+<div class="chart-card">
+    <h3>📈 Relation Prix / Temps (Régression)</h3>
+    <canvas id="regression"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const prices = {{ agences_prices | safe }};
+const times = {{ trajets_counts | safe }};
+
+// 🔥 Histogramme (simulation simple)
+const bins = {};
+prices.forEach(p => {
+    let key = Math.floor(p / 1000) * 1000;
+    bins[key] = (bins[key] || 0) + 1;
+});
+
+const labels = Object.keys(bins);
+const values = Object.values(bins);
+
+new Chart(document.getElementById("histogram"), {
+    type: "bar",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Nombre de voyages",
+            data: values
+        }]
+    }
+});
+
+// 🔥 Régression simple (approximation)
+const regressionData = prices.map((p, i) => ({
+    x: p,
+    y: times[i] || 0
+}));
+
+new Chart(document.getElementById("regression"), {
+    type: "scatter",
+    data: {
+        datasets: [{
+            label: "Données",
+            data: regressionData
+        }]
+    }
+});
+</script>
+
+{% endblock %}
