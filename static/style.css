@@ -90,3 +90,54 @@ button {
 canvas {
     margin-top: 15px;
 }
+/* 📱 RESPONSIVE DESIGN */
+
+* {
+    box-sizing: border-box;
+}
+
+/* conteneur adaptable */
+.container {
+    padding: 10px;
+}
+
+/* cartes flexibles */
+.stats-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* sur téléphone */
+@media screen and (max-width: 768px) {
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+        font-size: 14px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .card {
+        font-size: 14px;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+canvas {
+    max-width: 100%;
+}
